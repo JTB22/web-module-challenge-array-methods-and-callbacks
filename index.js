@@ -94,9 +94,18 @@ Use the higher-order function getWinners to do the following:
 💡 HINT: Don't worry about ties for now (Please see the README file for info on ties for a stretch goal.)
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(arr, callback) {
+    const winners = [];
+    callback(arr).forEach((item) => {
+        if(item['Home Team Goals'] > item['Away Team Goals']) {
+            winners.push(item['Home Team Name']);
+        } else {
+            winners.push(item['Away Team Name']);
+        }
+    });
+    return winners;
 }
+console.log('Task 4: ', getWinners(fifaData, getFinals));
 
 
 
@@ -111,10 +120,16 @@ Use the higher-order function getWinnersByYear to do the following:
 💡 HINT: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(arr, finalsCB, yearsCB, winnersCB) {
+    const winnersByYear = [];
+    const years = yearsCB(arr, finalsCB);
+    const winners = winnersCB(arr, finalsCB);
+    years.forEach((year, index) => {
+        winnersByYear.push(`In ${year}, ${winners[index + 1]} won the world cup!`);
+    });
+    return winnersByYear;
 }
-
+console.log('Task 5: ', getWinnersByYear(fifaData, getFinals, getYears, getWinners));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
