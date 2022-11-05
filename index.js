@@ -56,15 +56,15 @@ Use getFinals to do the following:
 */
 
 function getFinals(arr) {
-    let teamNames = [];
-    const finals = arr.filter(function(item) {
+    // let teamNames = [];
+    const finals = arr.filter((item) => {
         return item.Stage === 'Final';
     });
-    finals.forEach(function(item) {
-        teamNames.push(item['Home Team Name']);
-        teamNames.push(item['Away Team Name']);
-    });
-    return teamNames;
+    // finals.forEach(function(item) {
+    //     teamNames.push(item['Home Team Name']);
+    //     teamNames.push(item['Away Team Name']);
+    // });
+    return finals;
 }
 console.log('Task 2: ', getFinals(fifaData));
 
@@ -75,9 +75,14 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function as the second parameter that will take getFinals from task 2 as an argument
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(arr,callback) {
+    const years = [];
+    callback(arr).forEach((item) => {
+        years.push(item.Year);
+    });
+    return years;
 }
+console.log('Task 3: ', getYears(fifaData, getFinals));
 
 
 
