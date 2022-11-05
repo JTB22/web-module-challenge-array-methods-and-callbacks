@@ -6,16 +6,45 @@ const { fifaData } = require('./fifa.js')
 Practice accessing data by console.log-ing the following pieces of data note. 
 
 💡 HINT: You may want to filter the data first 😉*/
+function inFinals(data) {
+    return data['Stage'] === 'Final';
+}
+const finals = fifaData.filter(inFinals);
 
 //(a) Home Team name for 2014 world cup final
-
+finals.forEach(function(item) {
+    if(item.Year === 2014) {
+        console.log('2014 Home Team Name: ', item['Home Team Name']);
+    }
+});
 //(b) Away Team name for 2014 world cup final
-
+finals.forEach(function(item) {
+    if(item.Year === 2014) {
+        console.log('2014 Away Team Name: ', item['Away Team Name']);
+    }
+});
 //(c) Home Team goals for 2014 world cup final
-
+finals.forEach(function(item) {
+    if(item.Year === 2014) {
+        console.log('2014 Home Team Goals: ', item['Home Team Goals']);
+    }
+});
 //(d) Away Team goals for 2014 world cup final
-
+finals.forEach(function(item) {
+    if(item.Year === 2014) {
+        console.log('2014 Away Team Goals: ', item['Away Team Goals']);
+    }
+});
 //(e) Winner of 2014 world cup final */
+finals.forEach(function(item) {
+    if(item.Year === 2014) {
+        if(item['Home Team Goals'] > item['Away Team Goals']) {
+            console.log(item['Home Team Name'], 'won the 2014 World Cup');
+        } else {
+            console.log(item['Away Team Name'], 'won the 2014 World Cup');
+        }
+    }
+});
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -26,10 +55,18 @@ Use getFinals to do the following:
 💡 HINT - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-    /* code here */
- }
-
+function getFinals(arr) {
+    let teamNames = [];
+    const finals = arr.filter(function(item) {
+        return item.Stage === 'Final';
+    });
+    finals.forEach(function(item) {
+        teamNames.push(item['Home Team Name']);
+        teamNames.push(item['Away Team Name']);
+    });
+    return teamNames;
+}
+console.log('Task 2: ', getFinals(fifaData));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
